@@ -9,15 +9,16 @@ class Master extends Component {
   constructor() {
      super();
      this.state = {
-       selected: 'Strona główna'
+       selected: 'Strona główna',
+       enabledCategories: []
      }
    }
 
   render() {
     return (
       <NavPane openLength={200} push color={'#cc7f29'} theme={'light'}>
-        {this.renderItem('Strona główna', <Main db={this.props.db}/>)}
-        {this.renderItem('Ustawienia', <Settings db={this.props.db}/>)}
+        {this.renderItem('Strona główna', <Main db={this.props.db} cats={this.state.enabledCategories} />)}
+        {this.renderItem('Ustawienia', <Settings db={this.props.db} cats={this.state.enabledCategories} />)}
         {this.renderItem('Tryb administracyjny', )}
       </NavPane>
     );
