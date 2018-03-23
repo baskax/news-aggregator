@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, protocol } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
 
@@ -13,7 +13,9 @@ if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow();
-
+  protocol.registerHttpProtocol('aggregator',(req,cb) => {
+    console.log(req.url);
+  });
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
@@ -31,6 +33,9 @@ const createWindow = async () => {
     mainWindow = null;
   });
 };
+
+//protocol
+app.setAsDefaultProtocolClient('aggregator');
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

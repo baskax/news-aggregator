@@ -35,7 +35,7 @@ export default class Main extends React.Component {
   render() {
     return (
       <div>
-          <NewsFeed data={this.state.data} />
+          <NewsFeed data={this.state.data} cats={this.props.enabledCategories}/>
       </div>
     );
   }

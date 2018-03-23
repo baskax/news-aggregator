@@ -22,8 +22,8 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    const categories = this.state.categories.map((value) => {
-      return (<div key={value.name}><Category category={value}/></div>);
+    const categories = this.state.categories.map((value, index) => {
+      return (<div key={index}><Category category={value} index={index} toggleCategory={this.props.toggleCategory} /></div>);
     });
     const flex = {
       display: 'flex',
